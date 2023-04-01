@@ -1,0 +1,92 @@
+<html>
+    <head>
+<title><%= title %></title>
+    </head>
+    <link rel="stylesheet" href="\css\style.css">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <body>
+    
+     <div id="container">
+        <div id="heading">
+        <h1>TODO App</h1>
+          </div>
+<!-- User can provide the task of the todo list -->
+      <div id="input-place">
+        <form action="/create" id="todolistdata" method="POST">
+        <label for="description" >DESCRIPTION</label>
+        <br>
+        
+        <input type="text" name="description" id="description" placeholder="What you need to do? ">
+        
+      </div>
+      <!-- Here user will choose category -->
+      <div id="choose-category">
+        <label for="category">CATEGORY</label>
+<br>
+         <select name="category" id="category">
+          <option value="category">Choose Category</option>
+          <option value="Personal">Personal</option>
+          <option value="Work">Work</option>
+            <option value="Cleaning">Cleaning</option>
+  <option value="Other">Other</option>
+        </select>
+      </div>
+<div id="due-date">
+  <label for="date">Due Date:</label>
+  <br>
+  <input type="date" id="date" name="date">
+
+</div>
+      <div id="buttons">
+        <div id="addbutton">
+<button type="submit" value="AddTask"><span id="plus">+</span> ADD TASK</button>
+        </div>
+        <div id="deletebutton">
+        
+        <button class="delete"><i class="fa-sharp fa-regular fa-trash-can"></i>DELETE TASK</button>
+        </div>
+      </div>
+
+    </form>
+      <div id="display-list">
+     <ul>
+
+      <!-- //display  todo list  -->
+   <% for(let todo of todo_list){ %>
+  
+    <li><input type="checkbox" class="custom-checkbox" id="<%=todo.id%>">
+      <label for="checkbox"><%=todo.description%></label>
+    
+          <div id="box">
+           
+            <p id="category" class="<%=todo.category%>"><%=todo.category%></p>
+          
+          </div>
+     
+          <p id="date"><i class="fa-solid fa-calendar"></i>
+        
+            <%if(todo.date==""){%>
+            
+               NO DEADLINE
+            <%} else{%>
+            
+            <%=todo.date%>
+            <%}%>
+          </p>
+      </li>
+      
+      <%}%>
+
+      
+     </ul>
+
+
+
+      </div>
+
+  </div>
+  <script  src="\js\index.js"></script>
+    </body>
+</html>
